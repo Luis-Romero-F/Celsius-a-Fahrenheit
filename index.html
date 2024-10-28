@@ -127,13 +127,13 @@
     
         function cambiarCelsius() {
             var celsius = document.getElementById("celsius").value;
-            if (modelo != null) {
-                var tensor = tf.tensor1d([parseInt(celsius)]);
-                var prediccion = modelo.predict(tensor).dataSync();
-                prediccion = Math.round(prediccion, 1);
-                document.getElementById("resultado").innerHTML = celsius + " grados Celsius son " + prediccion + " grados Fahrenheit";
+        
+            if (!isNaN(celsius) && celsius.trim() !== "") {
+                var valorCelsius = parseFloat(celsius);
+                var prediccion = (valorCelsius * 9/5) + 32;
+                document.getElementById("resultado").innerHTML = celsius + " grados Celsius son " + prediccion.toFixed(1) + " grados Fahrenheit";
             } else {
-                document.getElementById("resultado").innerHTML = "Intente de nuevo en un momento...";
+                document.getElementById("resultado").innerHTML = "Ingrese un valor numérico válido.";
             }
         }
     </script>
